@@ -8,7 +8,7 @@ $(document).ready(function() {
   var nbr = 0;
   let player = {
              position: {x: 30, y: 25},
-             color: "yellow",
+             color: "green",
            }
   let top_can;
   let top;
@@ -20,6 +20,8 @@ $(document).ready(function() {
   let border = true;
   let poz_y_de;
   function makeMaze() {
+    /*$(canvas).css('height', niz.length*15);
+    $(canvas).css('width', niz[0].length*15);*/
     for (var i = 0; i < niz.length*15; i= i+15) {
       for (var k = 0; k < niz[0].length*15; k=k+15) {
         if (niz[i/15][k/15] == 0) {
