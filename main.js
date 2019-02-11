@@ -93,7 +93,7 @@ function promena_pozicije(smer) {
     chPlayer();
     player.position.y-=3;
     makingPlayer();
-    if (player.position.y > 225 && $(canvas).css('top') !== '0px' && player.position.y < niz.length*15 - 225) {
+    if (player.position.y > 210 && $(canvas).css('top') !== '0px' && player.position.y < niz.length*15 - 225) {
       $(canvas).css('top', '+=3');
     }
   }else if(smer == "de"){
