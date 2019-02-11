@@ -76,7 +76,7 @@ function chPlayer() {
   ctx.arc(player.position.x, player.position.y, 8, 0,  2* Math.PI);
   ctx.fill();*/
   //ctx.stroke();
-  player.color = "red";
+  player.color = "green";
 }
 function promena_pozicije(smer) {
   if (smer == "d") {
