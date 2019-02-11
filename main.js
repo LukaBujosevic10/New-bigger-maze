@@ -45,7 +45,7 @@ $(document).ready(function() {
   ctx.fill();
   ctx.stroke();
   ctx.beginPath();
-  ctx.fillStyle = "purple";
+  ctx.fillStyle = "red";
   //ctx.arc(player.position.x - 6, player.position.y, 1, 0,  2* Math.PI);
   ctx.fill();
 
@@ -78,7 +78,7 @@ function chPlayer() {
   ctx.arc(player.position.x, player.position.y, 8, 0,  2* Math.PI);
   ctx.fill();*/
   //ctx.stroke();
-  player.color = "purple";
+  player.color = "red";
 }
 function promena_pozicije(smer) {
   if (smer == "d") {
