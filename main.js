@@ -8,7 +8,7 @@ $(document).ready(function() {
   var nbr = 0;
   let player = {
              position: {x: 30, y: 25},
-             color: "yellow",
+             color: "purple",
            }
   let top_can;
   let top;
@@ -43,7 +43,7 @@ $(document).ready(function() {
   ctx.fill();
   ctx.stroke();
   ctx.beginPath();
-  ctx.fillStyle = "green";
+  ctx.fillStyle = "purple";
   //ctx.arc(player.position.x - 6, player.position.y, 1, 0,  2* Math.PI);
   ctx.fill();
 
@@ -76,14 +76,14 @@ function chPlayer() {
   ctx.arc(player.position.x, player.position.y, 8, 0,  2* Math.PI);
   ctx.fill();*/
   //ctx.stroke();
-  player.color = "yellow";
+  player.color = "purple";
 }
 function promena_pozicije(smer) {
   if (smer == "d") {
     chPlayer();
     player.position.y+= 3;
       makingPlayer();
-    if (player.position.y > 225 && top*(-1)+450 <= niz.length*15) {
+    if (player.position.y > 225 && player.position.y+225 <= niz.length*15) {
       $(canvas).css('top', '-=3');
     }
 
