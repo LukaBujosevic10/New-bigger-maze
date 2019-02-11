@@ -199,16 +199,16 @@ function deviceOrientationListener(event) {
 
 
 if (event.beta > 2) {
-  gore();
-}
-if (event.beta < -2) {
   dole();
 }
+if (event.beta < -2) {
+  gore();
+}
 if (event.gamma > 2) {
-  desno();
+  levo();
 }
 if (event.gamma < -2) {
-  levo();
+  desno();
 }
 }
 
