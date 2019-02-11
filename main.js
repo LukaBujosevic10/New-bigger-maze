@@ -76,7 +76,7 @@ function chPlayer() {
   ctx.arc(player.position.x, player.position.y, 8, 0,  2* Math.PI);
   ctx.fill();*/
   //ctx.stroke();
-  player.color = "green";
+  player.color = "yellow";
 }
 function promena_pozicije(smer) {
   if (smer == "d") {
@@ -123,6 +123,7 @@ function levo(){
   if (niz[poz_y][Math.floor((player.position.x - 10)/15)] == 1 || niz[poz_y_de][Math.floor((player.position.x - 10)/15)] == 1) {
     let str = Math.floor(((player.position.x - 7)-3)/15);
     for (var i = 3; i > 0; i--) {
+
       if (str !== Math.floor(((player.position.x - 7)- i)/15)) {
        console.log("I je " + i);
        chPlayer();
@@ -207,10 +208,10 @@ if (event.beta < -2) {
   gore();
 }
 if (event.gamma > 2) {
-  levo();
+  desno();
 }
 if (event.gamma < -2) {
-  desno();
+  levo();
 }
 }
 
