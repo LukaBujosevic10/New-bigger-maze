@@ -29,6 +29,8 @@ $(document).ready(function() {
         }else if(niz[i/15][k/15] == 1){
           ctx.fillStyle = "black";
 
+        }else if (niz[i/15][k/15] == 2) {
+          ctx.fillStyle = "green";
         }
         ctx.fillRect(k, i, k+15, i+15);
       }
@@ -99,14 +101,14 @@ function promena_pozicije(smer) {
     player.position.x+=3;
     console.log(player.position.x-4, ostatak_x);
     makingPlayer();
-    if (player.position.x > 150 && player.position.x < niz[0].length*15) {
+    if (player.position.x > 150 && player.position.x < niz[0].length*15-135) {
       $(canvas).css('left', '-=3');
     }
   }else if (smer == 'l') {
     chPlayer();
     player.position.x-=3;
     makingPlayer();
-    if (player.position.x > 140) {
+    if (player.position.x > 140 && player.position.x < niz[0].length*15-150) {
       $(canvas).css('left', '+=3');
     }
   }
