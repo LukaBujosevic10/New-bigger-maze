@@ -8,7 +8,7 @@ $(document).ready(function() {
   var nbr = 0;
   let player = {
              position: {x: 30, y: 25},
-             color: "green",
+             color: "black",
            }
   let top_can;
   let top;
