@@ -1,5 +1,16 @@
 'use strict'
 $(document).ready(function() {
+  function loadinMenu() {
+    ctx.fillStyle = "black";
+    ctx.fillRect(0,0, 300, 450);
+    ctx.font = "50px Comic Sans MS";
+    ctx.fillStyle = "yellow";
+    ctx.textAlign = "center";
+    ctx.rotate(90*Math.PI/180);
+    ctx.fillText("Mega Maze", 200, -250);
+    ctx.font = "30px Comic Sans MS";
+    ctx.fillText("Loading Maze", 200, -200);
+  }
   //console.log("H velikog je " + niz.length);
   //console.log("W velikog je " + niz[0].length);
   let canvas = document.getElementById('canvas');
@@ -50,7 +61,7 @@ $(document).ready(function() {
   ctx.fill();
 
   }
-makeMaze();
+//makeMaze();
   window.addEventListener("keydown", tastatura);
 
 function tastatura() {
@@ -216,5 +227,5 @@ if (event.gamma < -2) {
   levo();
 }
 }
-
+loadinMenu();
 });
