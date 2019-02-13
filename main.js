@@ -13,7 +13,7 @@ $(document).ready(function() {
     ctx.fillText("Loading Level...", 200, -100);
     ctx.fillStyle = "white";
     ctx.rotate(270*Math.PI/180);
-    setTimeout(levelCompleated, 3000);
+    setTimeout(makeMaze, 3000);
 
 
   }
@@ -242,7 +242,7 @@ function provera_specijalnih_polja() {
   }
 }
 function mainManu() {
-  ctx.fillStyle = "aqua";
+  ctx.fillStyle = "black";
   ctx.fillRect(0,0, 300, 450);
   ctx.fillStyle = "#FF0090";
   ctx.fillRect(200, 0, 300, 450);
@@ -254,7 +254,9 @@ function mainManu() {
   /*ctx.fillStyle = "#FF0090";
   let start_pozicija = 100;
   for (var i = 0; i < niz.length+1; i++) {
+    console.log("Hello");
       ctx.rect(150, start_pozicija, 180, start_pozicija+30);
+      ctx.stroke();
   }*/
 }
 function levelCompleated() {
