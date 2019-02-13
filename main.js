@@ -11,15 +11,13 @@ $(document).ready(function() {
     ctx.fillText("MEGA MAZE", 200, -150);
     ctx.font = "30px Comic Sans MS";
     ctx.fillText("Loading Level...", 200, -100);
-  //  makeMaze();
     ctx.fillStyle = "white";
     ctx.rotate(270*Math.PI/180);
-    setTimeout(makeMaze, 3000);
+    setTimeout(levelCompleated, 3000);
 
-  //  makeMaze();
+
   }
-  //console.log("H velikog je " + niz.length);
-  //console.log("W velikog je " + niz[0].length);
+
   let canvas = document.getElementById('canvas');
   let ctx = canvas.getContext('2d');
   var brojac = 0;
@@ -28,8 +26,6 @@ $(document).ready(function() {
              position: {x: 30, y: 25},
              color: "red",
            }
-//  let top_can;
-//  let top;
   let poz_x;
   let poz_y;
   let ostatak_x;
@@ -40,22 +36,15 @@ $(document).ready(function() {
   let bri = 0;
   let brk = 0;
   let element;
+  let level = 0;
+  let o_nivo;
   function makeMaze() {
+    o_nivo = niz[level];
     canvas.width = 2000;
     canvas.height = 2000;
-    //ctx.clearRect(0, 0, 300, 450);
-    //loadinMenu();
-    for (var i = 0; i < niz.length*15; i= i+15) {
-      for (var k = 0; k < niz[0].length*15; k=k+15) {
-        element = niz[i/15][k/15];
-      /*  if (niz[i/15][k/15] == 0) {
-          ctx.fillStyle = "white";
-        }else if(niz[i/15][k/15] == 1){
-          ctx.fillStyle = "black";
-
-        }else if (niz[i/15][k/15] == 2) {
-          ctx.fillStyle = "green";
-        }*/
+    for (var i = 0; i < o_nivo.length*15; i= i+15) {
+      for (var k = 0; k < o_nivo[0].length*15; k=k+15) {
+        element = o_nivo[i/15][k/15];
         switch (element) {
           case 0:
             ctx.fillStyle = "white";
@@ -71,10 +60,18 @@ $(document).ready(function() {
 
       }
     }
-
+    console.log("canvas unloaded");
     makingPlayer();
+    if (window.DeviceOrientationEvent) {
+            window.addEventListener("deviceorientation", deviceOrientationListener);
+          } else {
+            alert("Sorry, your browser doesn't support Device Orientation");
+          }
+    window.addEventListener("keydown", tastatura);
+
   }
-  makeMaze();
+
+
   function makingPlayer() {
     ctx.beginPath();
   ctx.fillStyle = player.color;
@@ -83,18 +80,14 @@ $(document).ready(function() {
   ctx.stroke();
   ctx.beginPath();
   ctx.fillStyle = "red";
-  //ctx.arc(player.position.x - 6, player.position.y, 1, 0,  2* Math.PI);
   ctx.fill();
 
   }
 
-  window.addEventListener("keydown", tastatura);
+
 
 function tastatura() {
   izracunavanje();
-//  top_can = $(canvas).css('top');
-//  let ex = top_can.substring(0, top_can.length-2);
-//  top = parseInt(top_can);
   if (event.keyCode == 39) {
       desno();
   }
@@ -111,10 +104,6 @@ function tastatura() {
 function chPlayer() {
   ctx.fillStyle = "white";
   ctx.fillRect(player.position.x - 7, player.position.y-7, 14,14);
-  /*console.log("brisem na " + player.position.x);
-  ctx.arc(player.position.x, player.position.y, 8, 0,  2* Math.PI);
-  ctx.fill();*/
-  //ctx.stroke();
   player.color = "red";
 }
 function promena_pozicije(smer) {
@@ -122,7 +111,7 @@ function promena_pozicije(smer) {
     chPlayer();
     player.position.y+= 3;
       makingPlayer();
-    if (player.position.y > 225 && player.position.y+225 <= niz.length*15) {
+    if (player.position.y > 225 && player.position.y+225 <= o_nivo.length*15) {
       $(canvas).css('top', '-=3');
     }
 
@@ -130,21 +119,21 @@ function promena_pozicije(smer) {
     chPlayer();
     player.position.y-=3;
     makingPlayer();
-    if (player.position.y > 210 && $(canvas).css('top') !== '0px' && player.position.y < niz.length*15 - 225) {
+    if (player.position.y > 210 && $(canvas).css('top') !== '0px' && player.position.y < o_nivo.length*15 - 225) {
       $(canvas).css('top', '+=3');
     }
   }else if(smer == "de"){
     chPlayer();
     player.position.x+=3;
     makingPlayer();
-    if (player.position.x > 150 && player.position.x < niz[0].length*15-135) {
+    if (player.position.x > 150 && player.position.x < o_nivo[0].length*15-135) {
       $(canvas).css('left', '-=3');
     }
   }else if (smer == 'l') {
     chPlayer();
     player.position.x-=3;
     makingPlayer();
-    if (player.position.x > 140 && player.position.x < niz[0].length*15-150) {
+    if (player.position.x > 140 && player.position.x < o_nivo[0].length*15-150) {
       $(canvas).css('left', '+=3');
     }
   }
@@ -158,7 +147,7 @@ function izracunavanje() {
    ostatak_y = (player.position.y-4)%15;
 }
 function levo(){
-  if (niz[poz_y][Math.floor((player.position.x - 10)/15)] == 1 || niz[poz_y_de][Math.floor((player.position.x - 10)/15)] == 1) {
+  if (o_nivo[poz_y][Math.floor((player.position.x - 10)/15)] == 1 || o_nivo[poz_y_de][Math.floor((player.position.x - 10)/15)] == 1) {
     let str = Math.floor(((player.position.x - 7)-3)/15);
     for (var i = 3; i > 0; i--) {
 
@@ -172,9 +161,10 @@ function levo(){
       }
     }
   }else{promena_pozicije("l");}
+  provera_specijalnih_polja();
 }
 function desno() {
-  if (niz[poz_y][Math.floor((player.position.x + 6+3)/15)] == 1 || niz[poz_y_de][Math.floor((player.position.x + 6+3)/15)] == 1) {
+  if (o_nivo[poz_y][Math.floor((player.position.x + 6+3)/15)] == 1 || o_nivo[poz_y_de][Math.floor((player.position.x + 6+3)/15)] == 1) {
     let str = Math.floor((player.position.x + 6+3)/15);
     for (var i = 3; i > 0; i--) {
       if (str !== Math.floor((player.position.x + 6+i)/15)) {
@@ -187,9 +177,10 @@ function desno() {
       }
     }
   }else{promena_pozicije("de");}
+  provera_specijalnih_polja();
 }
 function gore() {
-  if (niz[Math.floor(((player.position.y-7)-3)/15)][poz_x] == 1 || niz[Math.floor(((player.position.y-7)-3)/15)][poz_x_de] == 1) {
+  if (o_nivo[Math.floor(((player.position.y-7)-3)/15)][poz_x] == 1 || o_nivo[Math.floor(((player.position.y-7)-3)/15)][poz_x_de] == 1) {
     let str = Math.floor(((player.position.y - 7)-3)/15);
     for (var i = 3; i > 0; i--) {
       if (str !== Math.floor(((player.position.y - 7)- i)/15)) {
@@ -204,9 +195,10 @@ function gore() {
   }else {
     promena_pozicije("g");
   }
+  provera_specijalnih_polja();
 }
 function dole() {
-  if (niz[Math.floor((player.position.y+6+3)/15)][poz_x] == 1 || niz[Math.floor((player.position.y+6+3)/15)][poz_x_de] == 1) {
+  if (o_nivo[Math.floor((player.position.y+6+3)/15)][poz_x] == 1 || o_nivo[Math.floor((player.position.y+6+3)/15)][poz_x_de] == 1) {
     let str = Math.floor((player.position.y + 6+3)/15);
     for (var i = 3; i > 0; i--) {
       if (str !== Math.floor((player.position.y + 6+i)/15)) {
@@ -221,15 +213,8 @@ function dole() {
   }else {
     promena_pozicije("d")
   }
+  provera_specijalnih_polja();
 }
-
-
-
-if (window.DeviceOrientationEvent) {
-        window.addEventListener("deviceorientation", deviceOrientationListener);
-      } else {
-        alert("Sorry, your browser doesn't support Device Orientation");
-      }
 
 
 function deviceOrientationListener(event) {
@@ -251,4 +236,42 @@ if (event.gamma < -2) {
 }
 }
 loadinMenu();
+function provera_specijalnih_polja() {
+  if (o_nivo[poz_y][poz_x] == 2) {
+    levelCompleated();
+  }
+}
+function mainManu() {
+  ctx.fillStyle = "aqua";
+  ctx.fillRect(0,0, 300, 450);
+  ctx.fillStyle = "#FF0090";
+  ctx.fillRect(200, 0, 300, 450);
+  ctx.fillStyle = "black";
+  ctx.font = "40px Comic Sans MS";
+  ctx.textAlign = "center";
+  ctx.rotate(90*Math.PI/180);
+  ctx.fillText("MAIN MENU", 220, -250);
+  /*ctx.fillStyle = "#FF0090";
+  let start_pozicija = 100;
+  for (var i = 0; i < niz.length+1; i++) {
+      ctx.rect(150, start_pozicija, 180, start_pozicija+30);
+  }*/
+}
+function levelCompleated() {
+  $(canvas).css("top", "0px");
+  $(canvas).css("left", "0px");
+  window.removeEventListener("click", tastatura);
+  window.removeEventListener("deviceorientation", deviceOrientationListener);
+  ctx.fillStyle = "black";
+  ctx.fillRect(0,0, 300, 450);
+  ctx.font = "40px Comic Sans MS";
+  ctx.fillStyle = "aqua";
+  ctx.textAlign = "center";
+  ctx.rotate(90*Math.PI/180);
+  ctx.fillText("LEVEL COMPLEATED", 220, -150);
+  ctx.font = "30px Comic Sans MS";
+  ctx.fillText("Congretulations", 200, -100);
+  ctx.rotate(270*Math.PI/180);
+  setTimeout(mainManu, 3000);
+}
 });
