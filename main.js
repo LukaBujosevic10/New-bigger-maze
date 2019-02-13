@@ -1,5 +1,6 @@
 'use strict'
 $(document).ready(function() {
+
   function loadinMenu() {
     ctx.fillStyle = "black";
     ctx.fillRect(0,0, 300, 450);
@@ -7,9 +8,15 @@ $(document).ready(function() {
     ctx.fillStyle = "yellow";
     ctx.textAlign = "center";
     ctx.rotate(90*Math.PI/180);
-    ctx.fillText("Mega Maze", 200, -250);
+    ctx.fillText("MEGA MAZE", 200, -150);
     ctx.font = "30px Comic Sans MS";
-    ctx.fillText("Loading Maze", 200, -200);
+    ctx.fillText("Loading Level...", 200, -100);
+  //  makeMaze();
+    ctx.fillStyle = "white";
+    ctx.rotate(270*Math.PI/180);
+    setTimeout(makeMaze, 3000);
+
+  //  makeMaze();
   }
   //console.log("H velikog je " + niz.length);
   //console.log("W velikog je " + niz[0].length);
@@ -21,8 +28,8 @@ $(document).ready(function() {
              position: {x: 30, y: 25},
              color: "red",
            }
-  let top_can;
-  let top;
+//  let top_can;
+//  let top;
   let poz_x;
   let poz_y;
   let ostatak_x;
@@ -30,28 +37,47 @@ $(document).ready(function() {
   let poz_x_de;
   let border = true;
   let poz_y_de;
+  let bri = 0;
+  let brk = 0;
+  let element;
   function makeMaze() {
-    /*$(canvas).css('height', niz.length*15);
-    $(canvas).css('width', niz[0].length*15);*/
+    canvas.width = 2000;
+    canvas.height = 2000;
+    //ctx.clearRect(0, 0, 300, 450);
+    //loadinMenu();
     for (var i = 0; i < niz.length*15; i= i+15) {
       for (var k = 0; k < niz[0].length*15; k=k+15) {
-        if (niz[i/15][k/15] == 0) {
+        element = niz[i/15][k/15];
+      /*  if (niz[i/15][k/15] == 0) {
           ctx.fillStyle = "white";
         }else if(niz[i/15][k/15] == 1){
           ctx.fillStyle = "black";
 
         }else if (niz[i/15][k/15] == 2) {
           ctx.fillStyle = "green";
+        }*/
+        switch (element) {
+          case 0:
+            ctx.fillStyle = "white";
+            break;
+          case 1:
+            ctx.fillStyle = "black";
+            break;
+          case 2:
+            ctx.fillStyle = "green";
+            break;
         }
         ctx.fillRect(k, i, k+15, i+15);
+
       }
     }
+
     makingPlayer();
   }
+  makeMaze();
   function makingPlayer() {
     ctx.beginPath();
   ctx.fillStyle = player.color;
-  console.log("crtam na " + player.position.x);
   ctx.arc(player.position.x, player.position.y, 6, 0,  2* Math.PI);
   ctx.fill();
   ctx.stroke();
@@ -61,14 +87,14 @@ $(document).ready(function() {
   ctx.fill();
 
   }
-//makeMaze();
+
   window.addEventListener("keydown", tastatura);
 
 function tastatura() {
   izracunavanje();
-  top_can = $(canvas).css('top');
+//  top_can = $(canvas).css('top');
 //  let ex = top_can.substring(0, top_can.length-2);
-  top = parseInt(top_can);
+//  top = parseInt(top_can);
   if (event.keyCode == 39) {
       desno();
   }
@@ -110,7 +136,6 @@ function promena_pozicije(smer) {
   }else if(smer == "de"){
     chPlayer();
     player.position.x+=3;
-    console.log(player.position.x-4, ostatak_x);
     makingPlayer();
     if (player.position.x > 150 && player.position.x < niz[0].length*15-135) {
       $(canvas).css('left', '-=3');
@@ -138,7 +163,6 @@ function levo(){
     for (var i = 3; i > 0; i--) {
 
       if (str !== Math.floor(((player.position.x - 7)- i)/15)) {
-       console.log("I je " + i);
        chPlayer();
         player.position.x-=i;
         makingPlayer();
@@ -169,7 +193,6 @@ function gore() {
     let str = Math.floor(((player.position.y - 7)-3)/15);
     for (var i = 3; i > 0; i--) {
       if (str !== Math.floor(((player.position.y - 7)- i)/15)) {
-       console.log("I je " + i);
        chPlayer();
         player.position.y-=i;
         makingPlayer();
