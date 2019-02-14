@@ -8,7 +8,7 @@ $(document).ready(function() {
     ctx.fillStyle = "yellow";
     ctx.textAlign = "center";
     ctx.rotate(90*Math.PI/180);
-    ctx.fillText("MEGA MAZE", 200, -150);
+    ctx.fillText("MEGA MAZE v123", 200, -150);
     ctx.font = "30px Comic Sans MS";
     ctx.fillText("Loading Level...", 200, -100);
     ctx.fillStyle = "white";
@@ -24,7 +24,7 @@ $(document).ready(function() {
   var nbr = 0;
   let player = {
              position: {x: 30, y: 25},
-             color: "chocolate",
+             color: "black",
            }
   let poz_x;
   let poz_y;
@@ -81,7 +81,7 @@ $(document).ready(function() {
   ctx.fill();
   ctx.stroke();
   ctx.beginPath();
-  ctx.fillStyle = "gayblue";
+  ctx.fillStyle = "black";
   ctx.fill();
 
   }
@@ -107,7 +107,7 @@ function tastatura() {
 function chPlayer() {
   ctx.fillStyle = "white";
   ctx.fillRect(player.position.x - 7, player.position.y-7, 14,14);
-  player.color = "chocolate";
+  player.color = "black";
 }
 function promena_pozicije(smer) {
   if (smer == "d") {
