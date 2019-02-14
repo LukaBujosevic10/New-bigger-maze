@@ -38,6 +38,7 @@ $(document).ready(function() {
   let element;
   let level = 0;
   let o_nivo;
+  let v;
   function makeMaze() {
     o_nivo = niz[level];
     canvas.width = 2000;
@@ -87,6 +88,7 @@ $(document).ready(function() {
 
 
 function tastatura() {
+  v = 3;
   izracunavanje();
   if (event.keyCode == 39) {
       desno();
@@ -109,32 +111,32 @@ function chPlayer() {
 function promena_pozicije(smer) {
   if (smer == "d") {
     chPlayer();
-    player.position.y+= 3;
+    player.position.y+= v;
       makingPlayer();
     if (player.position.y > 225 && player.position.y+225 <= o_nivo.length*15) {
-      $(canvas).css('top', '-=3');
+      $(canvas).css('top', '-=' + v);
     }
 
   }else if (smer == "g") {
     chPlayer();
-    player.position.y-=3;
+    player.position.y-=v;
     makingPlayer();
     if (player.position.y > 210 && $(canvas).css('top') !== '0px' && player.position.y < o_nivo.length*15 - 225) {
-      $(canvas).css('top', '+=3');
+      $(canvas).css('top', '+=' + v);
     }
   }else if(smer == "de"){
     chPlayer();
-    player.position.x+=3;
+    player.position.x+=v;
     makingPlayer();
     if (player.position.x > 150 && player.position.x < o_nivo[0].length*15-135) {
-      $(canvas).css('left', '-=3');
+      $(canvas).css('left', '-=' + v);
     }
   }else if (smer == 'l') {
     chPlayer();
-    player.position.x-=3;
+    player.position.x-=v;
     makingPlayer();
     if (player.position.x > 140 && player.position.x < o_nivo[0].length*15-150) {
-      $(canvas).css('left', '+=3');
+      $(canvas).css('left', '+=' + v);
     }
   }
 }
@@ -147,9 +149,9 @@ function izracunavanje() {
    ostatak_y = (player.position.y-4)%15;
 }
 function levo(){
-  if (o_nivo[poz_y][Math.floor((player.position.x - 10)/15)] == 1 || o_nivo[poz_y_de][Math.floor((player.position.x - 10)/15)] == 1) {
-    let str = Math.floor(((player.position.x - 7)-3)/15);
-    for (var i = 3; i > 0; i--) {
+  if (o_nivo[poz_y][Math.floor((player.position.x - 7 - v)/15)] == 1 || o_nivo[poz_y_de][Math.floor((player.position.x - 7-v)/15)] == 1) {
+    let str = Math.floor(((player.position.x - 7)-v)/15);
+    for (var i = v; i > 0; i--) {
 
       if (str !== Math.floor(((player.position.x - 7)- i)/15)) {
        chPlayer();
@@ -164,9 +166,9 @@ function levo(){
   provera_specijalnih_polja();
 }
 function desno() {
-  if (o_nivo[poz_y][Math.floor((player.position.x + 6+3)/15)] == 1 || o_nivo[poz_y_de][Math.floor((player.position.x + 6+3)/15)] == 1) {
-    let str = Math.floor((player.position.x + 6+3)/15);
-    for (var i = 3; i > 0; i--) {
+  if (o_nivo[poz_y][Math.floor((player.position.x + 6+v)/15)] == 1 || o_nivo[poz_y_de][Math.floor((player.position.x + 6+v)/15)] == 1) {
+    let str = Math.floor((player.position.x + 6+v)/15);
+    for (var i = v; i > 0; i--) {
       if (str !== Math.floor((player.position.x + 6+i)/15)) {
             chPlayer();
         player.position.x+=i;
@@ -180,9 +182,9 @@ function desno() {
   provera_specijalnih_polja();
 }
 function gore() {
-  if (o_nivo[Math.floor(((player.position.y-7)-3)/15)][poz_x] == 1 || o_nivo[Math.floor(((player.position.y-7)-3)/15)][poz_x_de] == 1) {
-    let str = Math.floor(((player.position.y - 7)-3)/15);
-    for (var i = 3; i > 0; i--) {
+  if (o_nivo[Math.floor(((player.position.y-7)-v)/15)][poz_x] == 1 || o_nivo[Math.floor(((player.position.y-7)-v)/15)][poz_x_de] == 1) {
+    let str = Math.floor(((player.position.y - 7)-v)/15);
+    for (var i = v; i > 0; i--) {
       if (str !== Math.floor(((player.position.y - 7)- i)/15)) {
        chPlayer();
         player.position.y-=i;
@@ -198,9 +200,9 @@ function gore() {
   provera_specijalnih_polja();
 }
 function dole() {
-  if (o_nivo[Math.floor((player.position.y+6+3)/15)][poz_x] == 1 || o_nivo[Math.floor((player.position.y+6+3)/15)][poz_x_de] == 1) {
-    let str = Math.floor((player.position.y + 6+3)/15);
-    for (var i = 3; i > 0; i--) {
+  if (o_nivo[Math.floor((player.position.y+6+v)/15)][poz_x] == 1 || o_nivo[Math.floor((player.position.y+6+v)/15)][poz_x_de] == 1) {
+    let str = Math.floor((player.position.y + 6+v)/15);
+    for (var i = v; i > 0; i--) {
       if (str !== Math.floor((player.position.y + 6+i)/15)) {
             chPlayer();
         player.position.y+=i;
@@ -219,9 +221,9 @@ function dole() {
 
 function deviceOrientationListener(event) {
 
-  izracunavanje();
+  izracunavanje(event);
 
-
+odr_br();
 if (event.beta > 2) {
   dole();
 }
@@ -263,6 +265,20 @@ function levelCompleated() {
     setTimeout(loadinMenu, 3000);
   }
 
-
+function odr_br(smer) {
+  let ab_beta = Math.abs(smer.beta);
+  let ab_gama = Math.abs(smer.gamma);
+  if((ab_beta >= 10 && ab_beta < 20) ||(ab_gama >= 10 && ab_gama < 20)){
+    v = 2;
+  }else if ((ab_beta >= 20 && ab_beta < 40) ||(ab_gama >= 20 && ab_gama < 40)) {
+    v = 3;
+  }else if( ab_beta >= 40 || ab_gama >= 40){
+    v = 4;
+  }else if((ab_beta >= 2 && ab_beta < 10) ||(ab_gama >= 2 && ab_gama < 10)){
+    v = 1;
+  }else if(ab_beta < 2 || ab_gama < 2){
+    v = 0;
+  }
+}
 }
 });
