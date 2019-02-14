@@ -38,7 +38,8 @@ $(document).ready(function() {
   let element;
   let level = 0;
   let o_nivo;
-  let v;
+  let v_gd;
+  let v_ld;
   function makeMaze() {
     o_nivo = niz[level];
     canvas.width = 2000;
@@ -149,9 +150,9 @@ function izracunavanje() {
    ostatak_y = (player.position.y-4)%15;
 }
 function levo(){
-  if (o_nivo[poz_y][Math.floor((player.position.x - 7 - v)/15)] == 1 || o_nivo[poz_y_de][Math.floor((player.position.x - 7-v)/15)] == 1) {
-    let str = Math.floor(((player.position.x - 7)-v)/15);
-    for (var i = v; i > 0; i--) {
+  if (o_nivo[poz_y][Math.floor((player.position.x - 7 - v_ld)/15)] == 1 || o_nivo[poz_y_de][Math.floor((player.position.x - 7-v)/15)] == 1) {
+    let str = Math.floor(((player.position.x - 7)-v_ld)/15);
+    for (var i = v_ld; i > 0; i--) {
 
       if (str !== Math.floor(((player.position.x - 7)- i)/15)) {
        chPlayer();
@@ -166,9 +167,9 @@ function levo(){
   provera_specijalnih_polja();
 }
 function desno() {
-  if (o_nivo[poz_y][Math.floor((player.position.x + 6+v)/15)] == 1 || o_nivo[poz_y_de][Math.floor((player.position.x + 6+v)/15)] == 1) {
-    let str = Math.floor((player.position.x + 6+v)/15);
-    for (var i = v; i > 0; i--) {
+  if (o_nivo[poz_y][Math.floor((player.position.x + 6+v_ld)/15)] == 1 || o_nivo[poz_y_de][Math.floor((player.position.x + 6+v)/15)] == 1) {
+    let str = Math.floor((player.position.x + 6+v_ld)/15);
+    for (var i = v_ld; i > 0; i--) {
       if (str !== Math.floor((player.position.x + 6+i)/15)) {
             chPlayer();
         player.position.x+=i;
@@ -182,9 +183,9 @@ function desno() {
   provera_specijalnih_polja();
 }
 function gore() {
-  if (o_nivo[Math.floor(((player.position.y-7)-v)/15)][poz_x] == 1 || o_nivo[Math.floor(((player.position.y-7)-v)/15)][poz_x_de] == 1) {
-    let str = Math.floor(((player.position.y - 7)-v)/15);
-    for (var i = v; i > 0; i--) {
+  if (o_nivo[Math.floor(((player.position.y-7)-v_gd)/15)][poz_x] == 1 || o_nivo[Math.floor(((player.position.y-7)-v)/15)][poz_x_de] == 1) {
+    let str = Math.floor(((player.position.y - 7)-v_gd)/15);
+    for (var i = v_gd; i > 0; i--) {
       if (str !== Math.floor(((player.position.y - 7)- i)/15)) {
        chPlayer();
         player.position.y-=i;
@@ -200,9 +201,9 @@ function gore() {
   provera_specijalnih_polja();
 }
 function dole() {
-  if (o_nivo[Math.floor((player.position.y+6+v)/15)][poz_x] == 1 || o_nivo[Math.floor((player.position.y+6+v)/15)][poz_x_de] == 1) {
-    let str = Math.floor((player.position.y + 6+v)/15);
-    for (var i = v; i > 0; i--) {
+  if (o_nivo[Math.floor((player.position.y+6+v_gd)/15)][poz_x] == 1 || o_nivo[Math.floor((player.position.y+6+v)/15)][poz_x_de] == 1) {
+    let str = Math.floor((player.position.y + 6+v_gd)/15);
+    for (var i = v_gd; i > 0; i--) {
       if (str !== Math.floor((player.position.y + 6+i)/15)) {
             chPlayer();
         player.position.y+=i;
@@ -269,7 +270,7 @@ function brzina(smer) {
 
   let ab_beta = Math.abs(smer.beta);
   let ab_gama = Math.abs(smer.gamma);
-  if((ab_beta >= 10 && ab_beta < 20) ||(ab_gama >= 10 && ab_gama < 20)){
+  /*if((ab_beta >= 10 && ab_beta < 20) ||(ab_gama >= 10 && ab_gama < 20)){
     v = 2;
   }else if ((ab_beta >= 20 && ab_beta < 40) ||(ab_gama >= 20 && ab_gama < 40)) {
     v = 3;
@@ -279,6 +280,30 @@ function brzina(smer) {
     v = 1;
   }else if(ab_beta < 2 || ab_gama < 2){
     v = 0;
+  }*/
+
+  if(ab_beta >= 10 && ab_beta < 20){
+    v_gd = 2;
+  }else if (ab_beta >= 20 && ab_beta < 40) {
+    v_gd = 3;
+  }else if(ab_beta >= 40){
+    v_gd = 6;
+  }else if(ab_beta >= 2 && ab_beta < 10){
+    v_gd = 1;
+  }else if(ab_beta < 2){
+    v_gd = 0;
+  }
+
+  if(ab_gama >= 10 && ab_gama < 20){
+    v_ld = 2;
+  }else if (ab_gama >= 20 && ab_gama < 40) {
+    v_ld = 3;
+  }else if(ab_gama >= 40){
+    v_ld = 6;
+  }else if(ab_gama >= 2 && ab_gama < 10){
+    v_ld = 1;
+  }else if(ab_gama < 2){
+    v_ld = 0;
   }
 }
 
