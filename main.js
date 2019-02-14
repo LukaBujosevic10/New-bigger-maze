@@ -266,7 +266,8 @@ function levelCompleated() {
   }
 }
 function odr_br(smer) {
-  alert('u odr_br');
+  ctx.fillStyle = "red";
+  ctx.fillRect(0,0,15,15);
   let ab_beta = Math.abs(smer.beta);
   let ab_gama = Math.abs(smer.gamma);
   if((ab_beta >= 10 && ab_beta < 20) ||(ab_gama >= 10 && ab_gama < 20)){
