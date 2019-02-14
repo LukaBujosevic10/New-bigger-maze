@@ -64,8 +64,8 @@ $(document).ready(function() {
     console.log("canvas unloaded");
     makingPlayer();
     if (window.DeviceOrientationEvent) {
-            //window.addEventListener("deviceorientation", deviceOrientationListener);
-            $(document).on("deviceorientation", deviceOrientationListener)
+            window.addEventListener("deviceorientation", deviceOrientationListener);
+            //$(document).on("deviceorientation", deviceOrientationListener)
           } else {
             alert("Sorry, your browser doesn't support Device Orientation");
           }
