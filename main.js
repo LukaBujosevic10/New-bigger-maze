@@ -81,7 +81,7 @@ $(document).ready(function() {
   ctx.fill();
   ctx.stroke();
   ctx.beginPath();
-  ctx.fillStyle = "chocolate";
+  ctx.fillStyle = "gayblue";
   ctx.fill();
 
   }
