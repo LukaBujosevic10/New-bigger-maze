@@ -264,7 +264,7 @@ function levelCompleated() {
     level++;
     setTimeout(loadinMenu, 3000);
   }
-
+}
 function odr_br(smer) {
   let ab_beta = Math.abs(smer.beta);
   let ab_gama = Math.abs(smer.gamma);
@@ -280,5 +280,5 @@ function odr_br(smer) {
     v = 0;
   }
 }
-}
+
 });
