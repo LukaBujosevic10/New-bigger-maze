@@ -70,7 +70,7 @@ $(document).ready(function() {
           } else {
             alert("Sorry, your browser doesn't support Device Orientation");
           }
-    $(document).on('keydown', tastatura);
+  //  $(document).on('keydown', tastatura);
   }
 
 
