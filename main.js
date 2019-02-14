@@ -221,9 +221,9 @@ function dole() {
 
 function deviceOrientationListener(event) {
 
-  izracunavanje(event);
+  izracunavanje();
 
-odr_br();
+odr_br(event);
 if (event.beta > 2) {
   dole();
 }
