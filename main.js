@@ -24,7 +24,7 @@ $(document).ready(function() {
   var nbr = 0;
   let player = {
              position: {x: 30, y: 25},
-             color: "yellow",
+             color: "red",
            }
   let poz_x;
   let poz_y;
@@ -80,7 +80,7 @@ $(document).ready(function() {
   ctx.fill();
   ctx.stroke();
   ctx.beginPath();
-  ctx.fillStyle = "yellow";
+  ctx.fillStyle = "red";
   ctx.fill();
 
   }
@@ -106,7 +106,7 @@ function tastatura() {
 function chPlayer() {
   ctx.fillStyle = "white";
   ctx.fillRect(player.position.x - 7, player.position.y-7, 14,14);
-  player.color = "yellow";
+  player.color = "red";
 }
 function promena_pozicije(smer) {
   if (smer == "d") {
@@ -220,10 +220,10 @@ function dole() {
 
 
 function deviceOrientationListener(event) {
-
-  izracunavanje();
-
-odr_br(event);
+  ctx.fillStyle = "red";
+  ctx.fillRect(0,0,15,15);
+izracunavanje();
+brzina(event);
 if (event.beta > 2) {
   dole();
 }
@@ -265,9 +265,8 @@ function levelCompleated() {
     setTimeout(loadinMenu, 3000);
   }
 }
-function odr_br(smer) {
-  ctx.fillStyle = "red";
-  ctx.fillRect(0,0,15,15);
+function brzina(smer) {
+
   let ab_beta = Math.abs(smer.beta);
   let ab_gama = Math.abs(smer.gamma);
   if((ab_beta >= 10 && ab_beta < 20) ||(ab_gama >= 10 && ab_gama < 20)){
