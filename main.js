@@ -24,7 +24,7 @@ $(document).ready(function() {
   var nbr = 0;
   let player = {
              position: {x: 30, y: 25},
-             color: "green",
+             color: "yellow",
            }
   let poz_x;
   let poz_y;
@@ -80,7 +80,7 @@ $(document).ready(function() {
   ctx.fill();
   ctx.stroke();
   ctx.beginPath();
-  ctx.fillStyle = "green";
+  ctx.fillStyle = "yellow";
   ctx.fill();
 
   }
@@ -106,7 +106,7 @@ function tastatura() {
 function chPlayer() {
   ctx.fillStyle = "white";
   ctx.fillRect(player.position.x - 7, player.position.y-7, 14,14);
-  player.color = "green";
+  player.color = "yellow";
 }
 function promena_pozicije(smer) {
   if (smer == "d") {
