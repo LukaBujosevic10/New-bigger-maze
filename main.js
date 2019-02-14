@@ -24,7 +24,7 @@ $(document).ready(function() {
   var nbr = 0;
   let player = {
              position: {x: 30, y: 25},
-             color: "purple",
+             color: "chocolate",
            }
   let poz_x;
   let poz_y;
@@ -80,7 +80,7 @@ $(document).ready(function() {
   ctx.fill();
   ctx.stroke();
   ctx.beginPath();
-  ctx.fillStyle = "purple";
+  ctx.fillStyle = "chocolate";
   ctx.fill();
 
   }
@@ -106,7 +106,7 @@ function tastatura() {
 function chPlayer() {
   ctx.fillStyle = "white";
   ctx.fillRect(player.position.x - 7, player.position.y-7, 14,14);
-  player.color = "purple";
+  player.color = "chocolate";
 }
 function promena_pozicije(smer) {
   if (smer == "d") {
@@ -274,7 +274,7 @@ function brzina(smer) {
   }else if ((ab_beta >= 20 && ab_beta < 40) ||(ab_gama >= 20 && ab_gama < 40)) {
     v = 3;
   }else if( ab_beta >= 40 || ab_gama >= 40){
-    v = 4;
+    v = 6;
   }else if((ab_beta >= 2 && ab_beta < 10) ||(ab_gama >= 2 && ab_gama < 10)){
     v = 1;
   }else if(ab_beta < 2 || ab_gama < 2){
