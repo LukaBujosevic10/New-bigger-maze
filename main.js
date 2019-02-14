@@ -63,12 +63,12 @@ $(document).ready(function() {
     console.log("canvas unloaded");
     makingPlayer();
     if (window.DeviceOrientationEvent) {
-            window.addEventListener("deviceorientation", deviceOrientationListener);
+            //window.addEventListener("deviceorientation", deviceOrientationListener);
+            $(document).on("deviceorientation", deviceOrientationListener)
           } else {
             alert("Sorry, your browser doesn't support Device Orientation");
           }
-    window.addEventListener("keydown", tastatura);
-
+    $(document).on('keydown', tastatura);
   }
 
 
@@ -241,39 +241,28 @@ function provera_specijalnih_polja() {
     levelCompleated();
   }
 }
-function mainManu() {
-  ctx.fillStyle = "black";
-  ctx.fillRect(0,0, 300, 450);
-  ctx.fillStyle = "#FF0090";
-  ctx.fillRect(200, 0, 300, 450);
-  ctx.fillStyle = "black";
-  ctx.font = "40px Comic Sans MS";
-  ctx.textAlign = "center";
-  ctx.rotate(90*Math.PI/180);
-  ctx.fillText("MAIN MENU", 220, -250);
-  /*ctx.fillStyle = "#FF0090";
-  let start_pozicija = 100;
-  for (var i = 0; i < niz.length+1; i++) {
-    console.log("Hello");
-      ctx.rect(150, start_pozicija, 180, start_pozicija+30);
-      ctx.stroke();
-  }*/
-}
 function levelCompleated() {
   $(canvas).css("top", "0px");
   $(canvas).css("left", "0px");
-  window.removeEventListener("click", tastatura);
-  window.removeEventListener("deviceorientation", deviceOrientationListener);
+  $(document).off('keydown', tastatura);
+  $(document).off("deviceorientation", deviceOrientationListener)
   ctx.fillStyle = "black";
   ctx.fillRect(0,0, 300, 450);
   ctx.font = "40px Comic Sans MS";
-  ctx.fillStyle = "aqua";
+  ctx.fillStyle = "gold";
   ctx.textAlign = "center";
   ctx.rotate(90*Math.PI/180);
   ctx.fillText("LEVEL COMPLEATED", 220, -150);
   ctx.font = "30px Comic Sans MS";
   ctx.fillText("Congretulations", 200, -100);
   ctx.rotate(270*Math.PI/180);
-  setTimeout(mainManu, 3000);
+  player.position.x = 23;
+  player.position.y = 23;
+  if (level+1 < niz.length) {
+    level++;
+    setTimeout(loadinMenu, 3000);
+  }
+
+
 }
 });
