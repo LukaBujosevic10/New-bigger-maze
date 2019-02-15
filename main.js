@@ -39,7 +39,7 @@ $(document).ready(function() {
   let level = 0;
   let o_nivo;
   let v = 1;
-  let v = 1;
+  
   function makeMaze() {
     o_nivo = niz[level];
     canvas.width = 2000;
