@@ -140,6 +140,8 @@ function promena_pozicije(smer) {
       $(canvas).css('left', '+=' + v_ld);
     }
   }
+  ctx.fillStyle = "blue";
+  ctx.fillRect(0,0,15,15);
 }
 function izracunavanje() {
    poz_x =  Math.floor((player.position.x-6)/15);
