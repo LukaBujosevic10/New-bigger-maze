@@ -223,8 +223,8 @@ function dole() {
 
 
 function deviceOrientationListener(event) {
-  ctx.fillStyle = "red";
-  ctx.fillRect(0,0,15,15);
+  /*ctx.fillStyle = "red";
+  ctx.fillRect(0,0,15,15);*/
 izracunavanje();
 brzina(event);
 if (event.beta > 2) {
