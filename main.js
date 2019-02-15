@@ -160,7 +160,7 @@ function izracunavanje() {
    ostatak_y = (player.position.y-4)%15;
 }
 function levo(){
-  if (o_nivo[poz_y][Math.floor((player.position.x - 7 - v_ld)/15)] == 1 || o_nivo[poz_y_de][Math.floor((player.position.x - 7-v)/15)] == 1) {
+  if (o_nivo[poz_y][Math.floor((player.position.x - 7 - v_ld)/15)] == 1 || o_nivo[poz_y_de][Math.floor((player.position.x - 7-v_ld)/15)] == 1) {
     let str = Math.floor(((player.position.x - 7)-v_ld)/15);
     for (var i = v_ld; i > 0; i--) {
 
@@ -177,7 +177,7 @@ function levo(){
   provera_specijalnih_polja();
 }
 function desno() {
-  if (o_nivo[poz_y][Math.floor((player.position.x + 6+v_ld)/15)] == 1 || o_nivo[poz_y_de][Math.floor((player.position.x + 6+v)/15)] == 1) {
+  if (o_nivo[poz_y][Math.floor((player.position.x + 6+v_ld)/15)] == 1 || o_nivo[poz_y_de][Math.floor((player.position.x + 6+v_ld)/15)] == 1) {
     let str = Math.floor((player.position.x + 6+v_ld)/15);
     for (var i = v_ld; i > 0; i--) {
       if (str !== Math.floor((player.position.x + 6+i)/15)) {
@@ -193,7 +193,7 @@ function desno() {
   provera_specijalnih_polja();
 }
 function gore() {
-  if (o_nivo[Math.floor(((player.position.y-7)-v_gd)/15)][poz_x] == 1 || o_nivo[Math.floor(((player.position.y-7)-v)/15)][poz_x_de] == 1) {
+  if (o_nivo[Math.floor(((player.position.y-7)-v_gd)/15)][poz_x] == 1 || o_nivo[Math.floor(((player.position.y-7)-v_gd)/15)][poz_x_de] == 1) {
     let str = Math.floor(((player.position.y - 7)-v_gd)/15);
     for (var i = v_gd; i > 0; i--) {
       if (str !== Math.floor(((player.position.y - 7)- i)/15)) {
@@ -211,7 +211,7 @@ function gore() {
   provera_specijalnih_polja();
 }
 function dole() {
-  if (o_nivo[Math.floor((player.position.y+6+v_gd)/15)][poz_x] == 1 || o_nivo[Math.floor((player.position.y+6+v)/15)][poz_x_de] == 1) {
+  if (o_nivo[Math.floor((player.position.y+6+v_gd)/15)][poz_x] == 1 || o_nivo[Math.floor((player.position.y+6+v_gd)/15)][poz_x_de] == 1) {
     let str = Math.floor((player.position.y + 6+v_gd)/15);
     for (var i = v_gd; i > 0; i--) {
       if (str !== Math.floor((player.position.y + 6+i)/15)) {
@@ -276,10 +276,10 @@ function levelCompleated() {
     setTimeout(loadinMenu, 3000);
   }
 }
-function brzina(smer) {
+function brzina(s) {
 
-  let ab_beta = Math.abs(smer.beta);
-  let ab_gama = Math.abs(smer.gamma);
+  let ab_beta = Math.abs(s.beta);
+  let ab_gama = Math.abs(s.gamma);
   /*if((ab_beta >= 10 && ab_beta < 20) ||(ab_gama >= 10 && ab_gama < 20)){
     v = 2;
   }else if ((ab_beta >= 20 && ab_beta < 40) ||(ab_gama >= 20 && ab_gama < 40)) {
