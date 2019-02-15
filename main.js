@@ -8,7 +8,7 @@ $(document).ready(function() {
     ctx.fillStyle = "yellow";
     ctx.textAlign = "center";
     ctx.rotate(90*Math.PI/180);
-    ctx.fillText("MEGA MAZE v126", 200, -150);
+    ctx.fillText("MEGA MAZE v127", 200, -150);
     ctx.font = "30px Comic Sans MS";
     ctx.fillText("Loading Level...", 200, -100);
     ctx.fillStyle = "white";
@@ -38,8 +38,8 @@ $(document).ready(function() {
   let element;
   let level = 0;
   let o_nivo;
-  let v_gd;
-  let v_ld;
+  let v_gd = 1;
+  let v_ld = 1;
   function makeMaze() {
     o_nivo = niz[level];
     canvas.width = 2000;
