@@ -8,7 +8,7 @@ $(document).ready(function() {
     ctx.fillStyle = "yellow";
     ctx.textAlign = "center";
     ctx.rotate(90*Math.PI/180);
-    ctx.fillText("MEGA MAZE v130", 200, -150);
+    ctx.fillText("MEGA MAZE v131", 200, -150);
     ctx.font = "30px Comic Sans MS";
     ctx.fillText("Loading Level...", 200, -100);
     ctx.fillStyle = "white";
@@ -39,7 +39,7 @@ $(document).ready(function() {
   let level = 0;
   let o_nivo;
   let v = 1;
-  
+
   function makeMaze() {
     o_nivo = niz[level];
     canvas.width = 2000;
@@ -113,6 +113,8 @@ function promena_pozicije(smer) {
   if (smer == "d") {
     chPlayer();
     player.position.y+= v;
+    $('#conteiner').html('Idem dole brzinom '+ v);
+
       makingPlayer();
     if (player.position.y > 225 && player.position.y+225 <= o_nivo.length*15) {
       $(canvas).css('top', '-=' + v);
@@ -121,6 +123,8 @@ function promena_pozicije(smer) {
   }else if (smer == "g") {
     chPlayer();
     player.position.y-=v;
+    $('#conteiner').html('Idem gore brzinom '+ v);
+
     makingPlayer();
     if (player.position.y > 210 && $(canvas).css('top') !== '0px' && player.position.y < o_nivo.length*15 - 225) {
       $(canvas).css('top', '+=' + v);
@@ -128,6 +132,8 @@ function promena_pozicije(smer) {
   }else if(smer == "de"){
     chPlayer();
     player.position.x+=v;
+    $('#conteiner').html('Idem desno brzinom '+ v);
+
     makingPlayer();
     if (player.position.x > 150 && player.position.x < o_nivo[0].length*15-135) {
       $(canvas).css('left', '-=' + v);
@@ -135,6 +141,7 @@ function promena_pozicije(smer) {
   }else if (smer == 'l') {
     chPlayer();
     player.position.x-=v;
+    $('#conteiner').html('Idem levo brzinom '+ v);
     makingPlayer();
     if (player.position.x > 140 && player.position.x < o_nivo[0].length*15-150) {
       $(canvas).css('left', '+=' + v);
