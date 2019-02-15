@@ -8,7 +8,7 @@ $(document).ready(function() {
     ctx.fillStyle = "yellow";
     ctx.textAlign = "center";
     ctx.rotate(90*Math.PI/180);
-    ctx.fillText("MEGA MAZE v133", 200, -150);
+    ctx.fillText("MEGA MAZE v134", 200, -150);
     ctx.font = "30px Comic Sans MS";
     ctx.fillText("Loading Level...", 200, -100);
     ctx.fillStyle = "white";
@@ -114,7 +114,6 @@ function promena_pozicije(smer) {
   if (smer == "d") {
     chPlayer();
     player.position.y+= v_gd;
-    $('#conteiner').html('Idem dole brzinom '+ v_gd);
 
       makingPlayer();
     if (player.position.y > 225 && player.position.y+225 <= o_nivo.length*15) {
@@ -124,7 +123,6 @@ function promena_pozicije(smer) {
   }else if (smer == "g") {
     chPlayer();
     player.position.y-=v_gd;
-    $('#conteiner').html('Idem gore brzinom '+ v_gd);
 
     makingPlayer();
     if (player.position.y > 210 && $(canvas).css('top') !== '0px' && player.position.y < o_nivo.length*15 - 225) {
@@ -133,7 +131,6 @@ function promena_pozicije(smer) {
   }else if(smer == "de"){
     chPlayer();
     player.position.x+=v_ld;
-    $('#conteiner').html('Idem desno brzinom '+ v_ld);
 
     makingPlayer();
     if (player.position.x > 150 && player.position.x < o_nivo[0].length*15-135) {
@@ -142,7 +139,6 @@ function promena_pozicije(smer) {
   }else if (smer == 'l') {
     chPlayer();
     player.position.x-=v_ld;
-    $('#conteiner').html('Idem levo brzinom '+ v_ld);
     makingPlayer();
     if (player.position.x > 140 && player.position.x < o_nivo[0].length*15-150) {
       $(canvas).css('left', '+=' + v_ld);
@@ -235,6 +231,10 @@ function deviceOrientationListener(event) {
   ctx.fillRect(0,0,15,15);*/
 izracunavanje();
 brzina(event);
+$('#conteiner').html('<p>Idem levo brzinom + '+v_ld+
+'</br>Idem desno brzinom '+v_ld+
+'</br>Idem gore brzinom '+v_gd+
+'</br>Idem dole brzinom '+v_gd+'</p>');
 if (event.beta > 2) {
   dole();
 }
@@ -298,7 +298,7 @@ function brzina(s) {
     v_gd = 3;
   }else if(ab_beta >= 40){
     v_gd = 6;
-  }else if(ab_beta >= 2 && ab_beta < 10){
+  }else if(ab_beta >= 2 && ab_beta < 5){
     v_gd = 1;
   }else if(ab_beta < 2){
     v_gd = 0;
@@ -310,7 +310,7 @@ function brzina(s) {
     v_ld = 3;
   }else if(ab_gama >= 40){
     v_ld = 6;
-  }else if(ab_gama >= 2 && ab_gama < 10){
+  }else if(ab_gama >= 2 && ab_gama < 5){
     v_ld = 1;
   }else if(ab_gama < 2){
     v_ld = 0;
