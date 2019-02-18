@@ -8,7 +8,7 @@ $(document).ready(function() {
     ctx.fillStyle = "yellow";
     ctx.textAlign = "center";
     ctx.rotate(90*Math.PI/180);
-    ctx.fillText("MEGA MAZE v137", 200, -150);
+    ctx.fillText("MEGA MAZE v138", 200, -150);
     ctx.font = "30px Comic Sans MS";
     ctx.fillText("Loading Level...", 200, -100);
     ctx.fillStyle = "white";
@@ -259,7 +259,7 @@ function levelCompleated() {
   ctx.fillRect(0,0,15,15);
   $(canvas).css("top", "0px");
   $(canvas).css("left", "0px");
-  $(document).off('keydown', tastatura);
+  //$(document).off('keydown', tastatura);
   $(document).off("deviceorientation", deviceOrientationListener);
   ctx.fillStyle = "black";
   ctx.fillRect(0,0, 300, 450);
