@@ -282,17 +282,6 @@ function brzina(s) {
 
   let ab_beta = Math.abs(s.beta);
   let ab_gama = Math.abs(s.gamma);
-  /*if((ab_beta >= 10 && ab_beta < 20) ||(ab_gama >= 10 && ab_gama < 20)){
-    v = 2;
-  }else if ((ab_beta >= 20 && ab_beta < 40) ||(ab_gama >= 20 && ab_gama < 40)) {
-    v = 3;
-  }else if( ab_beta >= 40 || ab_gama >= 40){
-    v = 6;
-  }else if((ab_beta >= 2 && ab_beta < 10) ||(ab_gama >= 2 && ab_gama < 10)){
-    v = 1;
-  }else if(ab_beta < 2 || ab_gama < 2){
-    v = 0;
-  }*/
 
   if(ab_beta >= 10 && ab_beta < 20){
     v_gd = 2;
