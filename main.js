@@ -8,7 +8,7 @@ $(document).ready(function() {
     ctx.fillStyle = "yellow";
     ctx.textAlign = "center";
     ctx.rotate(90*Math.PI/180);
-    ctx.fillText("MEGA MAZE v139", 200, -150);
+    ctx.fillText("MEGA MAZE v140", 200, -150);
     ctx.font = "30px Comic Sans MS";
     ctx.fillText("Loading Level...", 200, -100);
     ctx.fillStyle = "white";
@@ -116,6 +116,7 @@ function promena_pozicije(smer) {
     player.position.y+= v_gd;
 
       makingPlayer();
+      $('#conteiner').html("Pozicija y je " + player.position.y + "</br> duzina lavirinta "+ o_nivo.length*15 + "</br> margina top je" + $(canvas).css("top"));
     if (player.position.y > 225 && player.position.y+225 <= o_nivo.length*15) {
       $(canvas).css('top', '-=' + v_gd);
     }
@@ -231,10 +232,8 @@ function deviceOrientationListener(event) {
   ctx.fillRect(0,0,15,15);*/
 izracunavanje();
 brzina(event);
-$('#conteiner').html('<p>Idem levo brzinom + '+v_ld+
-'</br>Idem desno brzinom '+v_ld+
-'</br>Idem gore brzinom '+v_gd+
-'</br>Idem dole brzinom '+v_gd+'</p>');
+/*$('#conteiner').html('<p>Idem levo brzinom + '+v_ld+
+'</br>Idem dole brzinom '+v_gd+'</p>');*/
 if (event.beta > 2) {
   dole();
 }
