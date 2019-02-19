@@ -8,7 +8,7 @@ $(document).ready(function() {
     ctx.fillStyle = "yellow";
     ctx.textAlign = "center";
     ctx.rotate(90*Math.PI/180);
-    ctx.fillText("MEGA MAZE v142", 200, -150);
+    ctx.fillText("MEGA MAZE v143", 200, -150);
     ctx.font = "30px Comic Sans MS";
     ctx.fillText("Loading Level...", 200, -100);
     ctx.fillStyle = "white";
@@ -40,11 +40,12 @@ $(document).ready(function() {
   let o_nivo;
   let v_ld = 1;
   let v_gd = 1;
-
+  let kreci;
   function makeMaze() {
     o_nivo = niz[level];
     canvas.width = 2000;
     canvas.height = 2000;
+    kreci = true;
     for (var i = 0; i < o_nivo.length*15; i= i+15) {
       for (var k = 0; k < o_nivo[0].length*15; k=k+15) {
         element = o_nivo[i/15][k/15];
@@ -239,18 +240,21 @@ izracunavanje();
 brzina(event);
 /*$('#conteiner').html('<p>Idem levo brzinom + '+v_ld+
 '</br>Idem dole brzinom '+v_gd+'</p>');*/
-if (event.beta > 2) {
-  dole();
+if (kreci == true) {
+  if (event.beta > 2) {
+    dole();
+  }
+  if (event.beta < -2) {
+    gore();
+  }
+  if (event.gamma > 2) {
+    desno();
+  }
+  if (event.gamma < -2) {
+    levo();
+  }
 }
-if (event.beta < -2) {
-  gore();
-}
-if (event.gamma > 2) {
-  desno();
-}
-if (event.gamma < -2) {
-  levo();
-}
+
 }
 loadinMenu();
 function provera_specijalnih_polja() {
@@ -259,6 +263,7 @@ function provera_specijalnih_polja() {
   }
 }
 function levelCompleated() {
+  kreci = false;
   ctx.fillStyle = "green";
   ctx.fillRect(0,0,15,15);
   $(canvas).css("top", "0px");
