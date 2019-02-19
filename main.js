@@ -121,7 +121,7 @@ function promena_pozicije(smer) {
      player.position.y+= v_gd;
        makingPlayer();
      if (player.position.y > 225 && player.position.y+225 <= o_nivo.length*15) {
-       $(canvas).css('top', '-=3');
+       $(canvas).css('top', '-=' + v_gd);
      }
   }else if (smer == "g") {
     //chPlayer();
