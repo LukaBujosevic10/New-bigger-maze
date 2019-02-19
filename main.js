@@ -8,7 +8,7 @@ $(document).ready(function() {
     ctx.fillStyle = "yellow";
     ctx.textAlign = "center";
     ctx.rotate(90*Math.PI/180);
-    ctx.fillText("MEGA MAZE v158", 200, -150);
+    ctx.fillText("MEGA MAZE v159", 200, -150);
     ctx.font = "30px Comic Sans MS";
     ctx.fillText("Loading Level...", 200, -100);
     ctx.fillStyle = "white";
@@ -238,16 +238,16 @@ brzina(event);
 /*$('#conteiner').html('<p>Idem levo brzinom + '+v_ld+
 '</br>Idem dole brzinom '+v_gd+'</p>');*/
 if (kreci == true) {
-  if (event.beta > 2) {
+  if (event.beta > 0) {
     dole();
   }
-  if (event.beta < -2) {
+  if (event.beta < -0) {
     gore();
   }
-  if (event.gamma > 2) {
+  if (event.gamma > 0) {
     desno();
   }
-  if (event.gamma < -2) {
+  if (event.gamma < -0) {
     levo();
   }
 }
@@ -298,7 +298,7 @@ function brzina(s) {
   }else if(ab_beta >= 2 && ab_beta < 5){
     v_gd = 1;
   }else if(ab_beta < 2){
-    v_gd = 0;
+    v_gd = 1;
   }
 
   if(ab_gama >= 10 && ab_gama < 20){
@@ -310,7 +310,7 @@ function brzina(s) {
   }else if(ab_gama >= 2 && ab_gama < 5){
     v_ld = 1;
   }else if(ab_gama < 2){
-    v_ld = 0;
+    v_ld = 1;
   }
 }
 
