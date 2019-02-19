@@ -8,7 +8,7 @@ $(document).ready(function() {
     ctx.fillStyle = "yellow";
     ctx.textAlign = "center";
     ctx.rotate(90*Math.PI/180);
-    ctx.fillText("MEGA MAZE v151", 200, -150);
+    ctx.fillText("MEGA MAZE v152", 200, -150);
     ctx.font = "30px Comic Sans MS";
     ctx.fillText("Loading Level...", 200, -100);
     ctx.fillStyle = "white";
@@ -108,9 +108,11 @@ $(document).ready(function() {
 }*/
 function chPlayer() {
   ctx.fillStyle = "white";
-  ctx.fillRect(player.position.x - 7, player.position.y-8, 14,14);
+  ctx.fillRect(player.position.x - 7, player.position.y-7, 14,14);
   player.color = "black";
 }
+
+
 function promena_pozicije(smer) {
   chPlayer();
   let top = parseInt($(canvas).css('top'));
@@ -120,14 +122,16 @@ function promena_pozicije(smer) {
       makingPlayer();
       $('#conteiner').html("Pozicija y je " + player.position.y + "</br> duzina lavirinta "+ o_nivo.length*15 + "</br> margina top je" + $(canvas).css("top"));
 
-    player.position.y+= v_gd;
       if (top*(-1) < 960-450 && player.position.y > 250) {
         if (960-450-top*(-1) > v_gd) {
           $(canvas).css('top', '-='+v_gd);
+          player.position.y+= v_gd;
 
         }else {
           $(canvas).css('top', '-=' + 960-450-top*(-1));
           player.position.y -= v_gd - (960-450-top*(-1));
+          player.position.y+= v_gd;
+
           }
       }
   }else if (smer == "g") {
@@ -185,7 +189,7 @@ function levo(){
         makingPlayer();
         break;
       }else{
-        str = Math.floor(((player.position.x - 7) - i)/15)
+        str = Math.floor(((player.position.x - 7) - i)/15);
       }
     }
   }else{promena_pozicije("l");}
@@ -201,7 +205,7 @@ function desno() {
         makingPlayer();
         break;
       }else{
-        str = Math.floor((player.position.x + 6+i)/15)
+        str = Math.floor((player.position.x + 6+i)/15);
       }
     }
   }else{promena_pozicije("de");}
