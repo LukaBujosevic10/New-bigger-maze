@@ -108,7 +108,7 @@ $(document).ready(function() {
 }*/
 function chPlayer() {
   ctx.fillStyle = "white";
-  ctx.fillRect(player.position.x - 7, player.position.y-7, 14,14);
+  ctx.fillRect(player.position.x - 7, player.position.y-8, 14,14);
   player.color = "black";
 }
 function promena_pozicije(smer) {
