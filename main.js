@@ -8,7 +8,7 @@ $(document).ready(function() {
     ctx.fillStyle = "yellow";
     ctx.textAlign = "center";
     ctx.rotate(90*Math.PI/180);
-    ctx.fillText("MEGA MAZE v160", 200, -150);
+    ctx.fillText("MEGA MAZE v161", 200, -150);
     ctx.font = "30px Comic Sans MS";
     ctx.fillText("Loading Level...", 200, -100);
     ctx.fillStyle = "white";
@@ -72,7 +72,6 @@ $(document).ready(function() {
           } else {
             alert("Sorry, your browser doesn't support Device Orientation");
           }
-  //  $(document).on('keydown', tastatura);
   }
 
 
@@ -124,14 +123,14 @@ function promena_pozicije(smer) {
     if (player.position.y > 210 && $(canvas).css('top') !== '0px' && player.position.y < o_nivo.length*15 - 225) {
       $(canvas).css('top', '+=' + v_gd);
     }
-  /*  if (top !== 0 && player.position.y > 250) {
+    if (top !== 0 && player.position.y > 250) {
       if (v_gd > top*-1) {
 
       }else {
         player.position.y-=v_gd;
         $(canvas).css('top', '+=' + v_gd);
       }
-    }*/
+    }
   }else if(smer == "de"){
     //chPlayer();
     player.position.x+=v_ld;
